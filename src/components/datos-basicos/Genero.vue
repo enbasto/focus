@@ -5,10 +5,20 @@
     </v-container>
     <v-container>
       <v-card>
+        <v-card-title>
+          <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Buscar"
+            single-line
+            hide-details
+          ></v-text-field>
+        </v-card-title>
 
       <v-data-table
         :headers="headers"
         :items="desserts"
+        :search="search"
         sort-by="Registros"
         class="elevation-1"
       >
@@ -106,6 +116,7 @@ import axios from "axios";
 var url = "https://dynamicliveconversationapi.azurewebsites.net/";
 export default {
   data: () => ({
+    search: "",
     dialog: false,
     dialogDelete: false,
     headers: [
@@ -115,7 +126,7 @@ export default {
         sortable: false,
         value: "id",
       },
-      { text: "Nombre", value: "genero" },
+      { text: "Nombre", value: "Genero" },
 
       { text: "Actions", value: "actions", sortable: false },
     ],

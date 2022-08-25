@@ -35,25 +35,25 @@ const routes = [
     path: '/registrar',
     name: 'registrar',
     component: () => import(/* webpackChunkName: "Registro Empresa" */ '../views/RegistroEmpresaView.vue'),
-    meta: { requiredAuth: true }
+    meta: { requiredAuth: false }
   },
   {
     path: '/dashboard',
     name: 'dashboard',
     component: () => import(/* webpackChunkName: "dashboard" */ '../views/DashboardView.vue'),
-    meta: { requiredAuth: true }
+    meta: { requiredAuth: false }
   },
   {
     path: '/datos-basicos/personas',
     name: 'Personas',
     component: () => import(/* webpackChunkName: "Registro Personas" */ '../views/PersonasView.vue'),
-    meta: { requiredAuth: true }
+    meta: { requiredAuth: false }
   },
   {
     path: '/datos-basicos/genero',
     name: 'Genero',
     component: () => import(/* webpackChunkName: "Registro Personas" */ '../views/GeneroView.vue'),
-    meta: { requiredAuth: true }
+    meta: { requiredAuth: false }
   },
   {
     path: '/encuesta/creacion-encuesta',

@@ -11,7 +11,7 @@
           <v-icon>mdi-monitor-dashboard</v-icon>
         </v-list-item-icon>
 
-        <v-list-item-title >Dashboard</v-list-item-title>
+        <v-list-item-title>Dashboard</v-list-item-title>
       </v-list-item>
 
       <v-list-group
@@ -57,29 +57,6 @@
             </v-list-item-icon>
           </v-list-item>
         </v-list-group>
-
-        <!--  <v-list-group
-          no-action
-          sub-group
-        >
-          <template v-slot:activator>
-            <v-list-item-content>
-              <v-list-item-title>Actions</v-list-item-title>
-            </v-list-item-content>
-          </template>
-
-          <v-list-item
-            v-for="([title, icon], i) in cruds"
-            :key="i"
-            link
-          >
-            <v-list-item-title v-text="title"></v-list-item-title>
-
-            <v-list-item-icon>
-              <v-icon v-text="icon"></v-icon>
-            </v-list-item-icon>
-          </v-list-item>
-        </v-list-group> -->
       </v-list-group>
     </v-list>
   </v-navigation-drawer>
@@ -116,7 +93,8 @@ export default {
                 submenuname: "Crear Encuesta",
                 submenuicon: "mdi-poll",
                 submenulink: "/encuesta/creacion-encuesta",
-              },  {
+              },
+              {
                 submenuname: "Crear Preguntas",
                 submenuicon: "mdi-progress-question",
                 submenulink: "/encuesta/creacion-preguntas",
