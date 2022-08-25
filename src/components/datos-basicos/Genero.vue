@@ -115,7 +115,7 @@ export default {
         sortable: false,
         value: "id",
       },
-      { text: "Nombre", value: "genero" },
+      { text: "Nombre", value: "Genero" },
 
       { text: "Actions", value: "actions", sortable: false },
     ],

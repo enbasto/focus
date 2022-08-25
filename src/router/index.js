@@ -76,7 +76,7 @@ const router = new VueRouter({
 })
 
 export default router;
-
+/*
 router.beforeEach(async (to, from, next) => {
   let userProfile = store.getters["auth/getUserProfile"];
   let isAuthenticated = localStorage.getItem("isAuthenticated");
@@ -96,4 +96,4 @@ router.beforeEach(async (to, from, next) => {
   }
   return next();
 });
-
+*/

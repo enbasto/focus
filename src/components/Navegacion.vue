@@ -22,26 +22,13 @@
         :prepend-icon="item.icon"
       >
         <template v-slot:activator>
-          <v-list-item-title active-class="pink--text">{{
-            item.name
-          }}</v-list-item-title>
+          <v-list-item-title active-class="pink--text">
+            {{item.name}}</v-list-item-title>
         </template>
-
-        <v-list-group
-          v-if="Object.keys(item.submenu).length > 0"
-          sub-group
-          v-for="(menu, i) in item.submenu"
-          :key="i"
-          active-class="pink--text"
-        >
-          <template v-slot:activator>
-            <v-list-item-content>
-              <v-list-item-title>{{ menu.submenutitle }}</v-list-item-title>
-            </v-list-item-content>
-          </template>
-
-          <v-list-item
-            v-for="(datasubmenu, i) in menu.datasubmenu"
+    
+        <v-list-item
+          v-if="Object.keys(item.datasubmenu).length > 0"
+            v-for="(datasubmenu, i) in item.datasubmenu"
             :key="i"
             link
             :to="datasubmenu.submenulink"
@@ -56,7 +43,6 @@
               <v-icon v-text="datasubmenu.submenuicon"></v-icon>
             </v-list-item-icon>
           </v-list-item>
-        </v-list-group>
 
         <!--  <v-list-group
           no-action
@@ -94,45 +80,43 @@ export default {
     sesion: false,
     items: [
       {
-        name: "Question",
+        name: "Datos Básicos",
         icon: "mdi-comment-question-outline",
         link: "/",
         vista: false,
-        submenu: [
+        datasubmenu: [
           {
-            submenutitle: "Datos Basicos",
-            datasubmenu: [
+            submenuname: "Personas",
+            submenuicon: "mdi-account-supervisor-circle-outline",
+            submenulink: "/datos-basicos/personas",
+          },
+          {
+            submenuname: "Genero",
+            submenuicon: "mdi-gender-male-female",
+            submenulink: "/datos-basicos/genero",
+          },
+          /* 
+          {
+            submenuname: "Crear Encuesta",
+            submenuicon: "mdi-poll",
+            submenulink: "/encuesta/creacion-encuesta",
+          }, 
+              
               {
-                submenuname: "Personas",
-                submenuicon: "mdi-account-supervisor-circle-outline",
-                submenulink: "/datos-basicos/personas",
-              },
-              {
-                submenuname: "Genero",
-                submenuicon: "mdi-gender-male-female",
-                submenulink: "/datos-basicos/genero",
-              },
-              {
-                submenuname: "Crear Encuesta",
-                submenuicon: "mdi-poll",
-                submenulink: "/encuesta/creacion-encuesta",
-              },  {
                 submenuname: "Crear Preguntas",
                 submenuicon: "mdi-progress-question",
                 submenulink: "/encuesta/creacion-preguntas",
               },
-            ],
-          },
-          {
-            submenutitle: "Encuesta",
-            datasubmenu: [
-              {
-                submenuname: "Crear Encuesta",
-                submenuicon: "mdi-progress-question",
-                submenulink: "/encuesta/creacion-encuesta",
-              },
-            ],
-          },
+            {
+              submenutitle: "Encuesta",
+              datasubmenu: [
+                {
+                  submenuname: "Crear Encuesta",
+                  submenuicon: "mdi-progress-question",
+                  submenulink: "/encuesta/creacion-encuesta",
+                },
+              ],
+            },*/
         ],
       },
       //  { name: "Mi Cuenta", icon: "mdi-account", link: "perfil", vista: false},
@@ -141,44 +125,29 @@ export default {
         icon: "mdi-wechat",
         link: "registrar",
         vista: false,
-        submenu: [
+        datasubmenu: [
           {
-            submenutitle: "Datos Basicos",
-            datasubmenu: [
-              {
-                submenuname: "Personas",
-                submenuicon: "mdi-account-supervisor-circle-outline",
-                submenulink: "/datos-basicos/personas",
-              },
-            ],
+            submenuname: "Personas",
+            submenuicon: "mdi-account-supervisor-circle-outline",
+            submenulink: "/datos-basicos/personas",
           },
           {
-            submenutitle: "Datos Basicos",
-            datasubmenu: [
-              {
-                submenuname: "Personas",
-                submenuicon: "mdi-account-supervisor-circle-outline",
-                submenulink: "/datos-basicos/personas",
-              },
-            ],
+            submenuname: "Personas",
+            submenuicon: "mdi-account-supervisor-circle-outline",
+            submenulink: "/datos-basicos/personas",
           },
         ],
-      },
+      },  
       {
         name: "Datos",
         icon: "mdi-chart-histogram",
         link: "salir",
         vista: false,
-        submenu: [
+        datasubmenu: [
           {
-            submenutitle: "Visualizar",
-            datasubmenu: [
-              {
-                submenuname: "Ver Datos",
-                submenuicon: "mdi-chart-scatter-plot-hexbin",
-                submenulink: "/datos-basicos/personas",
-              },
-            ],
+            submenuname: "Ver Datos",
+            submenuicon: "mdi-chart-scatter-plot-hexbin",
+            submenulink: "/datos-basicos/personas",
           },
         ],
       },
