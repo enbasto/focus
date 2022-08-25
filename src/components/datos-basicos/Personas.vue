@@ -1,8 +1,6 @@
 <template>
   <div>
-    <v-container id="Demografico" fluid tag="section">
-
-    </v-container>
+    <v-container id="Demografico" fluid tag="section"> </v-container>
     <v-container>
       <!--   <v-card>
 
