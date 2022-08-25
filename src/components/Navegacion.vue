@@ -95,6 +95,11 @@ export default {
             submenuicon: "mdi-gender-male-female",
             submenulink: "/datos-basicos/genero",
           },
+          {
+            submenuname: "Compañia",
+            submenuicon: "mdi-gender-male-female",
+            submenulink: "/datos-basicos/company",
+          },
           /* 
           {
             submenuname: "Crear Encuesta",

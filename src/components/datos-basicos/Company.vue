@@ -24,10 +24,10 @@
       >
         <template v-slot:top>
           <v-toolbar flat>
-            <v-toolbar-title>Registros Genero</v-toolbar-title>
+            <v-toolbar-title>Registros Compañia</v-toolbar-title>
             <v-divider class="mx-4" inset vertical></v-divider>
             <v-spacer></v-spacer>
-            <v-dialog v-model="dialog" max-width="500px">
+            <v-dialog v-model="dialog" max-width="900px">
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   color="primary"
@@ -47,21 +47,88 @@
                 <v-card-text>
                   <v-container>
                     <v-row>
-                      <v-col cols="12" sm="6" md="4">
+                      <v-col cols="12" sm="6" md="6">
                         <v-text-field
-                          v-model="generoItem.id"
-                          label="Id Registro"
+                          v-model="companies.id"
+                          label="Id Company"
                           disabled
                           type="number"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="12" sm="6" md="4">
+                      <v-col cols="12" sm="6" md="6">
                         <v-text-field
-                          v-model="generoItem.genero"
-                          label="Nombre Registro"
+                          v-model="companies.nit"
+                          label="NIT"
                         ></v-text-field>
                       </v-col>
                     </v-row>
+
+                    <v-row>
+                        <v-col cols="12" sm="6" md="6">
+                          <v-text-field
+                            v-model="companies.NombreCompania"
+                            label="Nombre Compañia"
+                            type="text"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="6">
+                          <v-text-field
+                            v-model="companies.Direccion"
+                            label="Direccion"
+                            type="text"
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
+
+                      <v-row>
+                        <v-col cols="12" sm="6" md="6">
+                          <v-text-field
+                            v-model="companies.NumeroTelefonico"
+                            label="Numero Telefonico"
+                            type="text"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="6">
+                          <v-text-field
+                            v-model="companies.Celular"
+                            label="Celular"
+                            type="text"
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
+
+                      <v-row>
+                        <v-col cols="12" sm="6" md="6">
+                          <v-text-field
+                            v-model="companies.CorreoElectronico"
+                            label="Correo Electrónico"
+                            type="Email"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="6">
+                          <v-text-field
+                            v-model="companies.Contact"
+                            label="Contacto"
+                            type="text"
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
+
+                      <v-row>
+                        <v-col cols="12" sm="6" md="6">
+                           <v-select
+                            v-model="companies.IdCiudad"
+                            :items="itemsCity"
+                            item-text="Ciudad"
+                            item-value="id"
+                            menu-props="auto"
+                            label="Ciudad"
+                            hide-details
+                            single-line
+                            required
+                          ></v-select>
+                        </v-col>
+                      </v-row>
                   </v-container>
                 </v-card-text>
 
@@ -126,20 +193,39 @@ export default {
         sortable: false,
         value: "id",
       },
-      { text: "Nombre", value: "Genero" },
-
+      { text: "NIT", value: "nit" },
+      { text: "Nombre Compañia", value: "NombreCompania" },
+      { text: "Direccion", value: "Direccion" },
+      { text: "Número Telefónico", value: "NumeroTelefonico" },
+      { text: "Celular", value: "Celular" },
+      { text: "Correo Eléctronico", value: "CorreoElectronico" },
+      { text: "Contacto", value: "Contact" },
+      { text: "Ciudad", value: "IdCiudad" },
       { text: "Actions", value: "actions", sortable: false },
     ],
     desserts: [],
     editedIndex: -1,
-    generoItem: {
-      id: "",
-      genero: "",
+    companies: {
+      nit: "",
+      NombreCompania: "",
+      Direccion: "",
+      NumeroTelefonico: "",
+      Celular: "",
+      CorreoElectronico: "",
+      Contact: "",
+      IdCiudad: "",
     },
     defaultItem: {
-      id: "",
-      genero: "",
+      nit: "",
+      NombreCompania: "",
+      Direccion: "",
+      NumeroTelefonico: "",
+      Celular: "",
+      CorreoElectronico: "",
+      Contact: "",
+      IdCiudad: "",
     },
+    itemsCity: [],
   }),
   computed: {
     formTitle() {
@@ -148,45 +234,54 @@ export default {
   },
 
   watch: {
-    dialog(valorgenero) {
-      valorgenero || this.close();
+    dialog(valorcompañia) {
+      valorcompañia || this.close();
     },
-    dialogDelete(valorgenero) {
-      valorgenero || this.closeDelete();
+    dialogDelete(valorcompañia) {
+      valorcompañia || this.closeDelete();
     },
   },
 
   created() {
     this.initialize();
+    this.cargarCity();
   },
 
   methods: {
     initialize() {
       axios
-        .get(url + "api/generos")
+        .get(url + "api/companias")
         .then((response) => {
           this.desserts = response.data;
         })
         .catch((e) => {
         });
+    },cargarCity() {
+      axios
+        .get(url + "api/ciudades")
+        .then((response) => {
+          this.itemsCity = response.data;
+          console.log(response.data);
+        })
+        .catch((e) => {});
     },
 
     editItem(item) {
       this.editedIndex = this.desserts.indexOf(item);
-      this.generoItem = Object.assign({}, item);
+      this.companies = Object.assign({}, item);
       this.dialog = true;
     },
 
     deleteItem(item) {
       this.editedIndex = this.desserts.indexOf(item);
-      this.generoItem = Object.assign({}, item);
+      this.companies = Object.assign({}, item);
       this.dialogDelete = true;
     },
 
     deleteItemConfirm() {
      // this.desserts.splice(this.editedIndex, 1);
-      console.log(this.generoItem.id)
-      axios.delete(url + "api/generos/"+this.generoItem.id)
+      console.log(this.companies.id)
+      axios.delete(url + "api/companias/"+this.companies.id)
      .then(response => {
       this.initialize();
      this.closeDelete();
@@ -198,7 +293,7 @@ export default {
     close() {
       this.dialog = false;
       this.$nextTick(() => {
-        this.generoItem = Object.assign({}, this.defaultItem);
+        this.companies = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
     },
@@ -206,7 +301,7 @@ export default {
     closeDelete() {
       this.dialogDelete = false;
       this.$nextTick(() => {
-        this.generoItem = Object.assign({}, this.defaultItem);
+        this.companies = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
     },
@@ -214,22 +309,24 @@ export default {
     save() {
       if (this.editedIndex > -1) {
         axios
-          .put(url + "api/generos/" + this.generoItem.id, this.generoItem)
+          .put(url + "api/companias/" + this.companies.id, this.companies)
           .then((response) => {
             this.initialize();
           })
           .catch((e) => {
+           
           });
       } else {   
-        console.log(this.generoItem)    
+        console.log(this.companies)    
         axios
-        
-          .post(url + "api/generos", {
-            genero: this.generoItem.genero,
-          })
+          .post(url + "api/companias", this.companies)
           .then((response) => {
-            console.log(response.data)
-            this.initialize();
+            if (response.status == 201) {
+              this.mensajeRespuesta = "Registro Creado Correctamente";
+              this.dialogMensajeRespuesta = true;
+              this.initialize();
+              this.close();
+            }
           })
           .catch((e) => {
             console.log(e)

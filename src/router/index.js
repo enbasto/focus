@@ -56,6 +56,12 @@ const routes = [
     meta: { requiredAuth: false }
   },
   {
+    path: '/datos-basicos/company',
+    name: 'Compañia',
+    component: () => import(/* webpackChunkName: "Registro Personas" */ '../views/CompanyView.vue'),
+    meta: { requiredAuth: false }
+  },
+  {
     path: '/encuesta/creacion-encuesta',
     name: 'Creacion Encuesta',
     component: () => import(/* webpackChunkName: "Registro Personas" */ '../views/encuestras-views/Creacion-EncuestaWiew'),
