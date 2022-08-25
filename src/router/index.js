@@ -56,23 +56,48 @@ const routes = [
     meta: { requiredAuth: false }
   },
   {
+    path: '/datos-basicos/rol',
+    name: 'Rol',
+    component: () => import(/* webpackChunkName: "Registro Personas" */ '../views/RolView.vue'),
+    meta: { requiredAuth: false }
+  },
+  {
     path: '/datos-basicos/company',
     name: 'Compañia',
     component: () => import(/* webpackChunkName: "Registro Personas" */ '../views/CompanyView.vue'),
     meta: { requiredAuth: false }
   },
   {
+    path: '/datos-basicos/categorias',
+    name: 'Compañia',
+    component: () => import(/* webpackChunkName: "Registro Personas" */ '../views/CategoriasView.vue'),
+    meta: { requiredAuth: false }
+  },
+  {
+    path: '/datos-basicos/encuestas',
+    name: 'Encuestas',
+    component: () => import(/* webpackChunkName: "Registro Personas" */ '../views/EncuestaView.vue'),
+    meta: { requiredAuth: false }
+  },
+  {
+    path: '/datos-basicos/seccion-encuesta',
+    name: 'SeccionEncuestas',
+    component: () => import(/* webpackChunkName: "Registro Personas" */ '../views/SeccionEncuestaView.vue'),
+    meta: { requiredAuth: false }
+  },
+  /*
+  {
     path: '/encuesta/creacion-encuesta',
     name: 'Creacion Encuesta',
-    component: () => import(/* webpackChunkName: "Registro Personas" */ '../views/encuestras-views/Creacion-EncuestaWiew'),
+    component: () => import(/* webpackChunkName: "Registro Personas"  '../views/encuestras-views/Creacion-EncuestaWiew'),
     meta: { requiredAuth: false }
   },
   {
     path: '/encuesta/creacion-preguntas',
     name: 'Creacion Preguntas',
-    component: () => import(/* webpackChunkName: "Registro Personas" */ '../views/encuestras-views/Creacion-PreguntasWiew'),
+    component: () => import(/* webpackChunkName: "Registro Personas"  '../views/encuestras-views/Creacion-PreguntasWiew'),
     meta: { requiredAuth: false }
-  },
+  },*/
 ]
 
 const router = new VueRouter({

@@ -24,10 +24,10 @@
       >
         <template v-slot:top>
           <v-toolbar flat>
-            <v-toolbar-title>Registros Compañia</v-toolbar-title>
+            <v-toolbar-title>Registros Encuesta</v-toolbar-title>
             <v-divider class="mx-4" inset vertical></v-divider>
             <v-spacer></v-spacer>
-            <v-dialog v-model="dialog" max-width="900px">
+            <v-dialog v-model="dialog" max-width="700px">
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   color="primary"
@@ -47,88 +47,43 @@
                 <v-card-text>
                   <v-container>
                     <v-row>
-                      <v-col cols="12" sm="6" md="6">
+                      <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          v-model="companies.id"
-                          label="Id Company"
+                          v-model="encuestaItem.id"
+                          label="Id Registro"
                           disabled
                           type="number"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="12" sm="6" md="6">
+                      <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          v-model="companies.nit"
-                          label="NIT"
+                          v-model="encuestaItem.Descripcion"
+                          label="Descripcion"
                         ></v-text-field>
                       </v-col>
                     </v-row>
-
                     <v-row>
-                        <v-col cols="12" sm="6" md="6">
-                          <v-text-field
-                            v-model="companies.NombreCompania"
-                            label="Nombre Compañia"
-                            type="text"
-                          ></v-text-field>
-                        </v-col>
-                        <v-col cols="12" sm="6" md="6">
-                          <v-text-field
-                            v-model="companies.Direccion"
-                            label="Direccion"
-                            type="text"
-                          ></v-text-field>
-                        </v-col>
-                      </v-row>
-
-                      <v-row>
-                        <v-col cols="12" sm="6" md="6">
-                          <v-text-field
-                            v-model="companies.NumeroTelefonico"
-                            label="Numero Telefonico"
-                            type="text"
-                          ></v-text-field>
-                        </v-col>
-                        <v-col cols="12" sm="6" md="6">
-                          <v-text-field
-                            v-model="companies.Celular"
-                            label="Celular"
-                            type="text"
-                          ></v-text-field>
-                        </v-col>
-                      </v-row>
-
-                      <v-row>
-                        <v-col cols="12" sm="6" md="6">
-                          <v-text-field
-                            v-model="companies.CorreoElectronico"
-                            label="Correo Electrónico"
-                            type="Email"
-                          ></v-text-field>
-                        </v-col>
-                        <v-col cols="12" sm="6" md="6">
-                          <v-text-field
-                            v-model="companies.Contact"
-                            label="Contacto"
-                            type="text"
-                          ></v-text-field>
-                        </v-col>
-                      </v-row>
-
-                      <v-row>
-                        <v-col cols="12" sm="6" md="6">
-                           <v-select
-                            v-model="companies.IdCiudad"
-                            :items="itemsCity"
-                            item-text="Ciudad"
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          v-model="encuestaItem.Nombre"
+                          label="Nombre"
+                          type="text"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                          <v-select
+                            v-model="encuestaItem.IdCompania"
+                            :items="itemsCompany"
+                            item-text="NombreCompania"
                             item-value="id"
                             menu-props="auto"
-                            label="Ciudad"
+                            label="Compañia"
                             hide-details
                             single-line
                             required
                           ></v-select>
                         </v-col>
-                      </v-row>
+                    </v-row>
                   </v-container>
                 </v-card-text>
 
@@ -193,39 +148,25 @@ export default {
         sortable: false,
         value: "id",
       },
-      { text: "NIT", value: "nit" },
-      { text: "Nombre Compañia", value: "NombreCompania" },
-      { text: "Direccion", value: "Direccion" },
-      { text: "Número Telefónico", value: "NumeroTelefonico" },
-      { text: "Celular", value: "Celular" },
-      { text: "Correo Eléctronico", value: "CorreoElectronico" },
-      { text: "Contacto", value: "Contact" },
-      { text: "Ciudad", value: "IdCiudad" },
+      { text: "Descripcion", value: "Descripcion" },
+      { text: "Nombre", value: "Nombre" },
+      { text: "Compania", value: "IdCompania" },
+
       { text: "Actions", value: "actions", sortable: false },
     ],
     desserts: [],
     editedIndex: -1,
-    companies: {
-      nit: "",
-      NombreCompania: "",
-      Direccion: "",
-      NumeroTelefonico: "",
-      Celular: "",
-      CorreoElectronico: "",
-      Contact: "",
-      IdCiudad: "",
+    encuestaItem: {
+      descripcion:"",
+      nombre: "",
+      IdCompania: "",
     },
     defaultItem: {
-      nit: "",
-      NombreCompania: "",
-      Direccion: "",
-      NumeroTelefonico: "",
-      Celular: "",
-      CorreoElectronico: "",
-      Contact: "",
-      IdCiudad: "",
+      descripcion:"",
+      nombre: "",
+      IdCompania: "",
     },
-    itemsCity: [],
+    itemsCompany: [],
   }),
   computed: {
     formTitle() {
@@ -234,54 +175,54 @@ export default {
   },
 
   watch: {
-    dialog(valorcompañia) {
-      valorcompañia || this.close();
+    dialog(valorEncuesta) {
+      valorEncuesta || this.close();
     },
-    dialogDelete(valorcompañia) {
-      valorcompañia || this.closeDelete();
+    dialogDelete(valorEncuesta) {
+      valorEncuesta || this.closeDelete();
     },
   },
 
   created() {
     this.initialize();
-    this.cargarCity();
+    this.cargarCompany();
   },
 
   methods: {
     initialize() {
       axios
-        .get(url + "api/companias")
+        .get(url + "api/Survey")
         .then((response) => {
           this.desserts = response.data;
         })
         .catch((e) => {
         });
-    },cargarCity() {
+        
+    },
+    cargarCompany() {
       axios
-        .get(url + "api/ciudades")
+        .get(url + "api/companias")
         .then((response) => {
-          this.itemsCity = response.data;
-          console.log(response.data);
+          this.itemsCompany = response.data;
         })
         .catch((e) => {});
     },
 
     editItem(item) {
       this.editedIndex = this.desserts.indexOf(item);
-      this.companies = Object.assign({}, item);
+      this.encuestaItem = Object.assign({}, item);
       this.dialog = true;
     },
 
     deleteItem(item) {
       this.editedIndex = this.desserts.indexOf(item);
-      this.companies = Object.assign({}, item);
+      this.encuestaItem = Object.assign({}, item);
       this.dialogDelete = true;
     },
 
     deleteItemConfirm() {
      // this.desserts.splice(this.editedIndex, 1);
-      console.log(this.companies.id)
-      axios.delete(url + "api/companias/"+this.companies.id)
+      axios.delete(url + "api/Survey/"+this.encuestaItem.id)
      .then(response => {
       this.initialize();
      this.closeDelete();
@@ -293,7 +234,7 @@ export default {
     close() {
       this.dialog = false;
       this.$nextTick(() => {
-        this.companies = Object.assign({}, this.defaultItem);
+        this.encuestaItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
     },
@@ -301,31 +242,37 @@ export default {
     closeDelete() {
       this.dialogDelete = false;
       this.$nextTick(() => {
-        this.companies = Object.assign({}, this.defaultItem);
+        this.encuestaItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
     },
-
+    
     save() {
       if (this.editedIndex > -1) {
-        axios
-          .put(url + "api/companias/" + this.companies.id, this.companies)
+        axios 
+          .put(url + "api/Survey/" + this.encuestaItem.id, this.encuestaItem)
           .then((response) => {
             this.initialize();
           })
           .catch((e) => {
-           
+            if (error.response.status == 400){
+              alert("entra 400")
+              console.log(error.response.data.errors)
+            }else if (error.response.status == 404){
+              alert("entra 404")
+              console.log(error.response.data.errors)
+            }
           });
       } else {   
+        console.log(this.encuestaItem)    
         axios
-          .post(url + "api/companias", this.companies)
+          .post(url + "api/Survey", this.encuestaItem)
           .then((response) => {
-            console.log(response.status)
             if (response.status == 201) {
               this.mensajeRespuesta = "Registro Creado Correctamente";
               this.dialogMensajeRespuesta = true;
               this.initialize();
-              this.close();
+              this.closeDelete();
             }
           })
           .catch((error) => {

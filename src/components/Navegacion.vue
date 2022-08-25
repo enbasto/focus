@@ -43,29 +43,6 @@
               <v-icon v-text="datasubmenu.submenuicon"></v-icon>
             </v-list-item-icon>
           </v-list-item>
-
-        <!--  <v-list-group
-          no-action
-          sub-group
-        >
-          <template v-slot:activator>
-            <v-list-item-content>
-              <v-list-item-title>Actions</v-list-item-title>
-            </v-list-item-content>
-          </template>
-
-          <v-list-item
-            v-for="([title, icon], i) in cruds"
-            :key="i"
-            link
-          >
-            <v-list-item-title v-text="title"></v-list-item-title>
-
-            <v-list-item-icon>
-              <v-icon v-text="icon"></v-icon>
-            </v-list-item-icon>
-          </v-list-item>
-        </v-list-group> -->
       </v-list-group>
     </v-list>
   </v-navigation-drawer>
@@ -86,7 +63,7 @@ export default {
         vista: false,
         datasubmenu: [
           {
-            submenuname: "Personas",
+            submenuname: "Persona",
             submenuicon: "mdi-account-supervisor-circle-outline",
             submenulink: "/datos-basicos/personas",
           },
@@ -100,31 +77,94 @@ export default {
             submenuicon: "mdi-gender-male-female",
             submenulink: "/datos-basicos/company",
           },
-          /* 
           {
-            submenuname: "Crear Encuesta",
-            submenuicon: "mdi-poll",
-            submenulink: "/encuesta/creacion-encuesta",
-          }, 
-              
-              {
-                submenuname: "Crear Preguntas",
-                submenuicon: "mdi-progress-question",
-                submenulink: "/encuesta/creacion-preguntas",
-              },
-            {
-              submenutitle: "Encuesta",
-              datasubmenu: [
-                {
-                  submenuname: "Crear Encuesta",
-                  submenuicon: "mdi-progress-question",
-                  submenulink: "/encuesta/creacion-encuesta",
-                },
-              ],
-            },*/
+            submenuname: "Rol",
+            submenuicon: "mdi-gender-male-female",
+            submenulink: "/datos-basicos/rol",
+          },
+          {
+            submenuname: "Encuesta",
+            submenuicon: "mdi-gender-male-female",
+            submenulink: "/datos-basicos/encuestas",
+          },
+          {
+            submenuname: "Seccion Encuesta",
+            submenuicon: "mdi-gender-male-female",
+            submenulink: "/datos-basicos/seccion-encuesta",
+          },
         ],
       },
-      //  { name: "Mi Cuenta", icon: "mdi-account", link: "perfil", vista: false},
+      {
+        name: "Encuestas Dinamicas",
+        icon: "mdi-comment-question-outline",
+        link: "/",
+        vista: false,
+        datasubmenu: [
+          {
+            submenuname: "Moderador",
+            submenuicon: "mdi-gender-male-female",
+            submenulink: "/datos-basicos/secciones",
+          },
+          {
+            submenuname: "Invitados",
+            submenuicon: "mdi-gender-male-female",
+            submenulink: "/datos-basicos/invitados",
+          },
+          {
+            submenuname: "Categorias",
+            submenuicon: "mdi-gender-male-female",
+            submenulink: "/datos-basicos/categorias",
+          },
+          {
+            submenuname: "Encuesta",
+            submenuicon: "mdi-gender-male-female",
+            submenulink: "/datos-basicos/encuestas",
+          },
+          {
+            submenuname: "Seccion Encuesta",
+            submenuicon: "mdi-gender-male-female",
+            submenulink: "/datos-basicos/seccion-encuestas",
+          },
+          {
+            submenuname: "Sala",
+            submenuicon: "mdi-gender-male-female",
+            submenulink: "/datos-basicos/secciones",
+          },
+        ],
+      },
+      {
+        name: "Encuestas Programadas",
+        icon: "mdi-comment-question-outline",
+        link: "/",
+        vista: false,
+        datasubmenu: [
+          {
+            submenuname: "Moderador",
+            submenuicon: "mdi-gender-male-female",
+            submenulink: "/datos-basicos/secciones",
+          },
+          {
+            submenuname: "Invitados",
+            submenuicon: "mdi-gender-male-female",
+            submenulink: "/datos-basicos/invitados",
+          },
+          {
+            submenuname: "Categorias",
+            submenuicon: "mdi-gender-male-female",
+            submenulink: "/datos-basicos/categorias",
+          },
+          {
+            submenuname: "Encuesta",
+            submenuicon: "mdi-gender-male-female",
+            submenulink: "/datos-basicos/encuestas",
+          },
+          {
+            submenuname: "Seccion Encuesta",
+            submenuicon: "mdi-gender-male-female",
+            submenulink: "/datos-basicos/seccion-encuesta",
+          }
+        ],
+      },
       {
         name: "Sala",
         icon: "mdi-wechat",

@@ -24,7 +24,7 @@
       >
         <template v-slot:top>
           <v-toolbar flat>
-            <v-toolbar-title>Registros Genero</v-toolbar-title>
+            <v-toolbar-title>Registros Roles</v-toolbar-title>
             <v-divider class="mx-4" inset vertical></v-divider>
             <v-spacer></v-spacer>
             <v-dialog v-model="dialog" max-width="500px">
@@ -49,7 +49,7 @@
                     <v-row>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          v-model="generoItem.id"
+                          v-model="rolItem.id"
                           label="Id Registro"
                           disabled
                           type="number"
@@ -57,8 +57,8 @@
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          v-model="generoItem.genero"
-                          label="Nombre Registro"
+                          v-model="rolItem.Rol"
+                          label="Nombre Rol"
                         ></v-text-field>
                       </v-col>
                     </v-row>
@@ -126,18 +126,19 @@ export default {
         sortable: false,
         value: "id",
       },
-      { text: "Nombre", value: "Genero" },
+      { text: "Nombre", value: "Rol" },
+
       { text: "Actions", value: "actions", sortable: false },
     ],
     desserts: [],
     editedIndex: -1,
-    generoItem: {
+    rolItem: {
       id: "",
-      genero: "",
+      Rol: "",
     },
     defaultItem: {
       id: "",
-      genero: "",
+      Rol: "",
     },
   }),
   computed: {
@@ -147,11 +148,11 @@ export default {
   },
 
   watch: {
-    dialog(valorgenero) {
-      valorgenero || this.close();
+    dialog(valorRol) {
+      valorRol || this.close();
     },
-    dialogDelete(valorgenero) {
-      valorgenero || this.closeDelete();
+    dialogDelete(valorRol) {
+      valorRol || this.closeDelete();
     },
   },
 
@@ -162,7 +163,7 @@ export default {
   methods: {
     initialize() {
       axios
-        .get(url + "api/generos")
+        .get(url + "api/roles")
         .then((response) => {
           this.desserts = response.data;
         })
@@ -172,20 +173,19 @@ export default {
 
     editItem(item) {
       this.editedIndex = this.desserts.indexOf(item);
-      this.generoItem = Object.assign({}, item);
+      this.rolItem = Object.assign({}, item);
       this.dialog = true;
     },
 
     deleteItem(item) {
       this.editedIndex = this.desserts.indexOf(item);
-      this.generoItem = Object.assign({}, item);
+      this.rolItem = Object.assign({}, item);
       this.dialogDelete = true;
     },
 
     deleteItemConfirm() {
      // this.desserts.splice(this.editedIndex, 1);
-      console.log(this.generoItem.id)
-      axios.delete(url + "api/generos/"+this.generoItem.id)
+      axios.delete(url + "api/roles/"+this.rolItem.id)
      .then(response => {
       this.initialize();
      this.closeDelete();
@@ -197,7 +197,7 @@ export default {
     close() {
       this.dialog = false;
       this.$nextTick(() => {
-        this.generoItem = Object.assign({}, this.defaultItem);
+        this.rolItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
     },
@@ -205,29 +205,29 @@ export default {
     closeDelete() {
       this.dialogDelete = false;
       this.$nextTick(() => {
-        this.generoItem = Object.assign({}, this.defaultItem);
+        this.rolItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
     },
-
+    
     save() {
+      console.log(this.rolItem)
       if (this.editedIndex > -1) {
-        axios
-          .put(url + "api/generos/" + this.generoItem.id, this.generoItem)
+        axios 
+          .put(url + "api/roles/" + this.rolItem.id, this.rolItem)
           .then((response) => {
             this.initialize();
           })
           .catch((e) => {
           });
       } else {   
-        console.log(this.generoItem)    
+        console.log(this.rolItem)    
         axios
         
-          .post(url + "api/generos", {
-            genero: this.generoItem.genero,
+          .post(url + "api/roles", {
+            rol: this.rolItem.Rol,
           })
           .then((response) => {
-            console.log(response.data)
             this.initialize();
           })
           .catch((e) => {
